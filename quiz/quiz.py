@@ -6,6 +6,22 @@ def show_menu():
     option = input("Enter option: ")
     return option
 
+def ask_questions():
+    questions = []
+    answers = []
+    
+    with open("questions.txt", "r") as file:
+        lines = file.read().splitlines()
+    
+    for i, text in enumerate(lines): #creates a tuple in memory with a line number at begining
+        if i % 2 == 0: #if number us even its a question
+            questions.append(text)
+        else:
+            answers.append(text) #if not even it is an answer
+            
+    for question, answer in zip(questions, answers): #put everything together in another tuple in memory
+        guess = input(question + "> ")
+
 def add_question():
     print("")
     question = input("Enter a question\n> ")
@@ -23,7 +39,7 @@ def game_loop():
     while True:
         option = show_menu()
         if option == "1":
-            print("You selected 'Ask questions'")
+            ask_questions()
         elif option == "2":
             add_question()
         elif option == "3":
