@@ -19,8 +19,22 @@ def ask_questions():
         else:
             answers.append(text) #if not even it is an answer
             
-    for question, answer in zip(questions, answers): #put everything together in another tuple in memory
-        guess = input(question + "> ")
+    number_of_questions = len(questions)
+    questions_and_answers = zip(questions, answers) #so doesnt need to zip everytime loop is run
+    
+    score = 0
+    
+    for question, answer in questions_and_answers: 
+        guess = input(question + " > ")
+        #check answer and update score
+        if guess == answer:
+            score += 1
+            print("Correct!")
+            print(score)
+        else:
+            print("Wrong!")
+            
+    print("You got {0} out of {1} correct".format(score, number_of_questions))
 
 def add_question():
     print("")
